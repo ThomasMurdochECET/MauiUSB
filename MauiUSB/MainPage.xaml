@@ -3,34 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiUSB.MainPage">
 
-    <HorizontalStackLayout>
+    <HorizontalStackLayout
         Spacing="25"
         Padding="30,0"
-        VerticalOptions="Center"
+        VerticalOptions="Center">
         <VerticalStackLayout>
             <HorizontalStackLayout>
                 <Button
-                            x:Name="btnOpenClose"
+                            x:Name="BtnOpenClose"
+                            Text="Open"
                             SemanticProperties.Hint="Open comport"
-                            Clicked="btnOpenClose_Clicked"/>
+                            Clicked="BtnOpenClose_Clicked"/>
                 <Button
                             x:Name="BtnClear"
                             Text="Clear"
                             SemanticProperties.Hint="Clear serial data"
-                            Clicked="btn_clear_Clicked"/>
+                            Clicked="BtnClear_Clicked"/>
                 <Picker
                             x:Name="portPicker"
                             Title="Select Com Port"
                             HorizontalOptions="Center"/>
 
-
-
-
-
             </HorizontalStackLayout>
         </VerticalStackLayout>
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Button
+                     x:Name="btnSend"
+                     Text="Send"
+                     Clicked="btnSend_Clicked"
+                     HorizontalOptions="Center"/>
+                <Entry
+                    x:Name="entrySend"
+                    Text="###1111196"
+                    HorizontalOptions="Center"/>
+
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label
+                  Text="Received Packet"
+                  HorizontalOptions="Center"/>
+
+            <CheckBox
+                  x:Name="checkBoxHistory"
+                  IsChecked="True"
+                  HorizontalOptions="Center"/>  
+            </HorizontalStackLayout>
+            <ScrollView
+                x:Name="ScrollViewRecData"
+                MaximumHeightRequest="500"
+                VerticalOptions="StartAndExpand"
+                <Label
+                    x:Name="LabelRXdata"
+                    Text="Received Packet"
+                    MinimumWidthRequest="310"/>
+
+
+
+
+
+        </VerticalStackLayout>
     </HorizontalStackLayout>
-    
-        
+  
+
+
+
+
 
 </ContentPage>

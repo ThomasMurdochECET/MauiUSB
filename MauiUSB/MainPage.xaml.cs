@@ -9,7 +9,17 @@
             InitializeComponent();
         }
 
-        private void btnOpenClose_Clicked(object sender, EventArgs e)
+        private void BtnOpenClose_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnClear_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSend_Clicked(object sender, EventArgs e)
         {
 
         }
