@@ -14,7 +14,7 @@
                             SemanticProperties.Hint="Open comport"
                             Clicked="btnOpenClose_Clicked"/>
                 <Button
-                            x:Name="btnClear"
+                            x:Name="BtnClear"
                             Text="Clear"
                             SemanticProperties.Hint="Clear serial data"
                             Clicked="btn_clear_Clicked"/>
