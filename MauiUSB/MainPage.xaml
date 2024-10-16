@@ -52,14 +52,12 @@
             <ScrollView
                 x:Name="ScrollViewRecData"
                 MaximumHeightRequest="500"
-                VerticalOptions="StartAndExpand"
-                <Label
+                VerticalOptions="StartAndExpand"/>
+            <Label
+          
                     x:Name="LabelRXdata"
                     Text="Received Packet"
                     MinimumWidthRequest="310"/>
-
-
-
 
 
         </VerticalStackLayout>

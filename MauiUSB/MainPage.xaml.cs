@@ -19,7 +19,7 @@
 
         }
 
-        private void btnSend_Clicked(object sender, EventArgs e)
+        private void BtnSend_Clicked(object sender, EventArgs e)
         {
 
         }
