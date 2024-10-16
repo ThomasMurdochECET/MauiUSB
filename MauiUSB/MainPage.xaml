@@ -3,16 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiUSB.MainPage">
 
-    <HorizontalStackLayout
+    <HorizontalStackLayout>
         Spacing="25"
         Padding="30,0"
         VerticalOptions="Center"
         <VerticalStackLayout>
             <HorizontalStackLayout>
                 <Button
-                    x:Name=""
-            
+                            x:Name="btnOpenClose"
+                            SemanticProperties.Hint="Open comport"
+                            Clicked="btnOpenClose_Clicked"/>
+                <Button
+                            x:Name="btnClear"
+                            Text="Clear"
+                            SemanticProperties.Hint="Clear serial data"
+                            Clicked="btn_clear_Clicked"/>
+                <Picker
+                            x:Name="portPicker"
+                            Title="Select Com Port"
+                            HorizontalOptions="Center"/>
+
+
+
+
+
             </HorizontalStackLayout>
         </VerticalStackLayout>
+    </HorizontalStackLayout>
+    
+        
 
 </ContentPage>

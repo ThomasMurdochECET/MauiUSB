@@ -9,7 +9,10 @@
             InitializeComponent();
         }
 
-        
+        private void btnOpenClose_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
