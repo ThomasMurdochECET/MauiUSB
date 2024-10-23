@@ -1,4 +1,5 @@
 ﻿using FTD2XX_NET;
+using System.Diagnostics;
 
 namespace MauiUSB
 
@@ -28,14 +29,14 @@ namespace MauiUSB
             // Check status
             if (ftStatus == FTDI.FT_STATUS.FT_OK)
             {
-                Console.WriteLine("Number of FTDI devices: " + ftdiDeviceCount.ToString());
-                Console.WriteLine("");
+               Trace.WriteLine("Number of FTDI devices: " + ftdiDeviceCount.ToString());
+               Trace.WriteLine("");
             }
             else
             {
                 // Wait for a key press
-                Console.WriteLine("Failed to get number of devices (error " + ftStatus.ToString() + ")");
-                Console.ReadKey();
+               Trace.WriteLine("Failed to get number of devices (error " + ftStatus.ToString() + ")");
+                
                 return;
             }
 
@@ -43,10 +44,29 @@ namespace MauiUSB
             if (ftdiDeviceCount == 0)
             {
                 // Wait for a key press
-                Console.WriteLine("Failed to get number of devices (error " + ftStatus.ToString() + ")");
-                Console.ReadKey();
+               Trace.WriteLine("Failed to get number of devices (error " + ftStatus.ToString() + ")");
+                
                 return;
             }
+
+            // Populate our device list
+            ftStatus = myFtdiDevice.GetDeviceList(ftdiDeviceList);
+
+            if (ftStatus == FTDI.FT_STATUS.FT_OK)
+            {
+                for (UInt32 i = 0; i < ftdiDeviceCount; i++)
+                {
+                   Trace.WriteLine("Device Index: " + i.ToString());
+                   Trace.WriteLine("Flags: " + String.Format("{0:x}", ftdiDeviceList[i].Flags));
+                   Trace.WriteLine("Type: " + ftdiDeviceList[i].Type.ToString());
+                   Trace.WriteLine("ID: " + String.Format("{0:x}", ftdiDeviceList[i].ID));
+                   Trace.WriteLine("Location ID: " + String.Format("{0:x}", ftdiDeviceList[i].LocId));
+                   Trace.WriteLine("Serial Number: " + ftdiDeviceList[i].SerialNumber.ToString());
+                   Trace.WriteLine("Description: " + ftdiDeviceList[i].Description.ToString());
+                   Trace.WriteLine("");
+                }
+            }
+
         }
 
         private void BtnClear_Clicked(object sender, EventArgs e)
