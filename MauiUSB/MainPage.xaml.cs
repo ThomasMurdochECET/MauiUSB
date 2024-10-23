@@ -38,8 +38,8 @@ namespace MauiUSB
             }
 
             // Set up device data parameters
-            // Set Baud rate to 9600
-            ftStatus = myFtdiDevice.SetBaudRate(9600);
+            // Set Baud rate to 115200
+            ftStatus = myFtdiDevice.SetBaudRate(115200);
             if (ftStatus != FTDI.FT_STATUS.FT_OK)
             {
                 // Wait for a key press
@@ -66,6 +66,36 @@ namespace MauiUSB
                 // Wait for a key press
                 Trace.WriteLine("Failed to set timeouts (error " + ftStatus.ToString() + ")");
                  
+                return;
+            }
+
+            // Check the amount of data available to read
+            // In this case we know how much data we are expecting, 
+            // so wait until we have all of the bytes we have sent.
+            UInt32 numBytesAvailable = 0;
+            do
+            {
+                ftStatus = myFtdiDevice.GetRxBytesAvailable(ref numBytesAvailable);
+                if (ftStatus != FTDI.FT_STATUS.FT_OK)
+                {
+                    // Wait for a key press
+                    Console.WriteLine("Failed to get number of bytes available to read (error " + ftStatus.ToString() + ")");
+                    Console.ReadKey();
+                    return;
+                }
+                Thread.Sleep(10);
+            } while (numBytesAvailable < dataToWrite.Length);
+
+            // Now that we have the amount of data we want available, read it
+            string readData;
+            UInt32 numBytesRead = 0;
+            // Note that the Read method is overloaded, so can read string or byte array data
+            ftStatus = myFtdiDevice.Read(out readData, numBytesAvailable, ref numBytesRead);
+            if (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+                // Wait for a key press
+                Console.WriteLine("Failed to read data (error " + ftStatus.ToString() + ")");
+                Console.ReadKey();
                 return;
             }
         }
