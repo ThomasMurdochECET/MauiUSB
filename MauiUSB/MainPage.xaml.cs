@@ -25,7 +25,7 @@ namespace MauiUSB
         private void BtnOpenClose_Clicked(object sender, EventArgs e)
         {
             RefreshDeviceList();
-           SetupFTDIdeviceByAutoSerialNumber();
+            SetupFTDIdeviceByAutoSerialNumber();
         }
 
         private void SetupFTDIdeviceByAutoSerialNumber()
@@ -74,7 +74,7 @@ namespace MauiUSB
             // Check the amount of data available to read
             // In this case we know how much data we are expecting, 
             // so wait until we have all of the bytes we have sent.
-            UInt32 numBytesAvailable = 0;
+            uint numBytesAvailable = 0;
             do
             {
                 ftStatus = myFtdiDevice.GetRxBytesAvailable(ref numBytesAvailable);
@@ -85,7 +85,7 @@ namespace MauiUSB
                      
                     return;
                 }
-                Thread.Sleep(10);
+               Thread.Sleep(90);
             } while (numBytesAvailable < packetSize);
 
             // Now that we have the amount of data we want available, read it
@@ -100,6 +100,7 @@ namespace MauiUSB
                  
                 return;
             }
+            
             Trace.WriteLine("Read data:" + readData);
         }
 
