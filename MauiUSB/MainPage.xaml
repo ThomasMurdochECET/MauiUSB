@@ -19,10 +19,10 @@
                             Text="Clear"
                             SemanticProperties.Hint="Clear serial data"
                             Clicked="BtnClear_Clicked"/>
-                <Picker
+                <!--<Picker
                             x:Name="portPicker"
                             Title="Select Com Port"
-                            HorizontalOptions="Center"/>
+                            HorizontalOptions="Center"/>-->
 
             </HorizontalStackLayout>
         </VerticalStackLayout>
@@ -31,7 +31,7 @@
                 <Button
                      x:Name="btnSend"
                      Text="Send"
-                     Clicked="btnSend_Clicked"
+                     Clicked="BtnSend_Clicked"
                      HorizontalOptions="Center"/>
                 <Entry
                     x:Name="entrySend"
