@@ -14,6 +14,8 @@ namespace MauiUSB
 
         // Create new instance of the FTDI device class
         FTDI myFtdiDevice = new FTDI();
+        //Variable to store data size
+        private uint packetSize;
 
         public MainPage()
         {
@@ -80,11 +82,11 @@ namespace MauiUSB
                 {
                     // Wait for a key press
                     Console.WriteLine("Failed to get number of bytes available to read (error " + ftStatus.ToString() + ")");
-                    Console.ReadKey();
+                     
                     return;
                 }
                 Thread.Sleep(10);
-            } while (numBytesAvailable < dataToWrite.Length);
+            } while (numBytesAvailable < packetSize);
 
             // Now that we have the amount of data we want available, read it
             string readData;
@@ -95,7 +97,7 @@ namespace MauiUSB
             {
                 // Wait for a key press
                 Console.WriteLine("Failed to read data (error " + ftStatus.ToString() + ")");
-                Console.ReadKey();
+                 
                 return;
             }
         }
