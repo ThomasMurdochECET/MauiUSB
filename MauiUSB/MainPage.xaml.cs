@@ -20,6 +20,60 @@ namespace MauiUSB
         private void BtnOpenClose_Clicked(object sender, EventArgs e)
         {
             RefreshDeviceList();
+           SetupFTDIdeviceByAutoSerialNumber();
+        }
+
+        private void SetupFTDIdeviceByAutoSerialNumber()
+        {
+            ftStatus = myFtdiDevice.OpenBySerialNumber(ftdiDeviceList[0].SerialNumber);
+            if (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+                // Wait for a key press
+                Console.WriteLine("Failed to open device (error " + ftStatus.ToString() + ")");
+                Console.ReadKey();
+                return;
+            }
+
+            // Set up device data parameters
+            // Set Baud rate to 9600
+            ftStatus = myFtdiDevice.SetBaudRate(9600);
+            if (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+                // Wait for a key press
+                Console.WriteLine("Failed to set Baud rate (error " + ftStatus.ToString() + ")");
+                Console.ReadKey();
+                return;
+            }
+
+            // Set data characteristics - Data bits, Stop bits, Parity
+            ftStatus = myFtdiDevice.SetDataCharacteristics(FTDI.FT_DATA_BITS.FT_BITS_8, FTDI.FT_STOP_BITS.FT_STOP_BITS_1, FTDI.FT_PARITY.FT_PARITY_NONE);
+            if (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+                // Wait for a key press
+                Console.WriteLine("Failed to set data characteristics (error " + ftStatus.ToString() + ")");
+                Console.ReadKey();
+                return;
+            }
+
+            // Set flow control - set RTS/CTS flow control
+            ftStatus = myFtdiDevice.SetFlowControl(FTDI.FT_FLOW_CONTROL.FT_FLOW_RTS_CTS, 0x11, 0x13);
+            if (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+                // Wait for a key press
+                Console.WriteLine("Failed to set flow control (error " + ftStatus.ToString() + ")");
+                Console.ReadKey();
+                return;
+            }
+
+            // Set read timeout to 5 seconds, write timeout to infinite
+            ftStatus = myFtdiDevice.SetTimeouts(5000, 0);
+            if (ftStatus != FTDI.FT_STATUS.FT_OK)
+            {
+                // Wait for a key press
+                Console.WriteLine("Failed to set timeouts (error " + ftStatus.ToString() + ")");
+                Console.ReadKey();
+                return;
+            }
         }
 
         private void RefreshDeviceList()
