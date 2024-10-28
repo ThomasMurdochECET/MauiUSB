@@ -26,7 +26,42 @@ namespace MauiUSB
         {
             RefreshDeviceList();
             SetupFTDIdeviceByAutoSerialNumber();
+            _ = MonitorUSBData();
         }
+
+        private async Task MonitorUSBData()
+        {
+            while (myFtdiDevice.IsOpen)
+            {
+                do
+                {
+                    ftStatus = myFtdiDevice.GetRxBytesAvailable(ref numBytesAvailable);
+                    if (ftStatus != FTDI.FT_STATUS.FT_OK)
+                    {
+                        // Wait for a key press
+                        Trace.WriteLine("Failed to get number of bytes available to read (error " + ftStatus.ToString() + ")");
+                        Trace.ReadKey();
+                        return;
+                    }
+                    Thread.Sleep(10);
+                }
+                while (numBytesAvailable < packetSize);
+
+                // Now that we have the amount of data we want available, read it
+                string readData;
+                UInt32 numBytesRead = 0;
+                // Note that the Read method is overloaded, so can read string or byte array data
+                ftStatus = myFtdiDevice.Read(out readData, numBytesAvailable, ref numBytesRead);
+                if (ftStatus != FTDI.FT_STATUS.FT_OK)
+                {
+                    // Wait for a key press
+                    Trace.WriteLine("Failed to read data (error " + ftStatus.ToString() + ")");
+                    Trace.ReadKey();
+                    return;
+                }
+                Trace.WriteLine(readData);
+
+            }
 
         private void SetupFTDIdeviceByAutoSerialNumber()
         {
