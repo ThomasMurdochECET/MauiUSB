@@ -21,6 +21,9 @@ namespace MauiUSB
         private uint numBytesWritten;
         private bool sendDataOK;
         private bool bPortOpen;
+        private string newPacket;
+        private int newPacketNumber;
+       
 
         public MainPage()
         {
@@ -85,8 +88,49 @@ namespace MauiUSB
                     return;
                 }
                 Trace.WriteLine("Read data:" + readData);
-                LabelRXdata.Text = readData;
+                newPacket = readData;
+                if (checkBoxHistory.IsChecked == true)
+                {
+                    LabelRXdata.Text = newPacket +LabelRXdata.Text;
+
+                }
+                else
+                {
+                    LabelRXdata.Text = newPacket;
+                }
                 await Task.Delay(90);
+                if(newPacket.Length > packetSize)
+                {
+                    ParseNewPacket();
+                }
+
+            }
+        }
+
+        private void ParseNewPacket()
+        {
+            if(newPacket.Substring(0,3)=="###")
+            {
+                int calChkSum =0;
+                newPacketNumber = Convert.ToInt32(newPacket.Substring(3, 3));
+
+                for (int i = 3; i<34; i++)
+                {
+                    calChkSum += (byte)newPacket[i];
+                }
+                calChkSum %= 1000;
+                int recChkSum = Convert.ToInt32(newPacket.Substring(34, 3));
+                if(calChkSum == recChkSum)
+                {
+                    Trace.WriteLine("Packet number:"+newPacketNumber);
+                    Trace.WriteLine("Checksum: " + recChkSum);
+                    Trace.WriteLine("Data: " + newPacket.Substring(3, 31));
+
+                }
+                else
+                {
+                    Trace.WriteLine("Checksum error");
+                }
 
             }
         }
