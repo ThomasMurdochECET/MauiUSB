@@ -1,4 +1,5 @@
 ﻿using FTD2XX_NET;
+using Microsoft.Maui.Layouts;
 using System.Diagnostics;
 using System.Text;
 
@@ -18,6 +19,8 @@ namespace MauiUSB
         //Variable to store data size
         private uint packetSize = 39;
         private uint numBytesWritten;
+        private bool sendDataOK;
+        private bool bPortOpen;
 
         public MainPage()
         {
@@ -26,9 +29,27 @@ namespace MauiUSB
 
         private void BtnOpenClose_Clicked(object sender, EventArgs e)
         {
-            RefreshDeviceList();
-            SetupFTDIdeviceByAutoSerialNumber();
-            _ = MonitorUSBData();
+            if (!bPortOpen)
+            {
+                RefreshDeviceList();
+                sendDataOK = false; // set the sendDataOK flag to false
+                SetupFTDIdeviceByAutoSerialNumber();
+                _ = MonitorUSBData(); // Monitor the USB data asynchronously
+                BtnOpenClose.Text = "Close";
+                bPortOpen = true;
+            }
+            else
+            {
+                CloseFTDIdevice();
+                BtnOpenClose.Text = "Open";
+                bPortOpen = false;
+            }
+            
+        }
+
+        private void CloseFTDIdevice()
+        {
+            ftStatus = myFtdiDevice.Close();
         }
 
         private async Task MonitorUSBData()
