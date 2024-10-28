@@ -49,6 +49,34 @@
                   IsChecked="True"
                   HorizontalOptions="Center"/>  
             </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label
+                    Text="Received Packet History"
+                    HorizontalOptions="Center"/>
+                <CheckBox
+                    x:Name="checkBoxHistory"
+                    IsChecked ="False"
+                    HorizontalOptions="Center"/>
+                <Label 
+                    Padding="50,0,0,0"
+                    Text="Parsed Packet History"/>
+                <CheckBox
+                    x:Name="checkBoxParsedHistory"
+                    IsChecked="False"
+                    HorizontalOptions="Center"/>
+                <Label
+                    x:Name="lblConnected"
+                    Padding="50,0,0,0"/>
+                <Label
+                    Text="Device Index"/>
+                <!--<Entry
+                    x:Name="DeviceIndex"
+                    Text="0"
+                    TextChanged="DeviceIndex_TextChanged"/>-->
+            </HorizontalStackLayout>
+
+
+    
             <ScrollView
                 x:Name="ScrollViewRecData"
                 MaximumHeightRequest="500"
@@ -58,6 +86,20 @@
                     x:Name="LabelRXdata"
                     Text="Received Packet"
                     MinimumWidthRequest="310"/>
+            <Label
+                x:Name="lblMessage"/>
+            <Label
+                Text="Parsed Packet"/>
+            <Label
+                 Text="Length   Header   Number   Analog0     Analog1    Analog2     Analog3  "/>
+            <ScrollView
+                x:Name="scrollViewParsedData"
+                MaximumHeightRequest="500"/>
+            <Label
+                x:Name="labelParsedData"
+                Text="Parsed Packet"
+                MinimumWidthRequest="310"/>
+
 
 
         </VerticalStackLayout>
