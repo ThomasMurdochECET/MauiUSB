@@ -119,7 +119,7 @@ namespace MauiUSB
                     calChkSum += (byte)newPacket[i];
                 }
                 calChkSum %= 1000;
-                int recChkSum = Convert.ToInt32(newPacket.Substring(34, 3));
+                int receivedChkSum = Convert.ToInt32(newPacket.Substring(34, 3));
                 if(calChkSum == recChkSum)
                 {
                     Trace.WriteLine("Packet number:"+newPacketNumber);
