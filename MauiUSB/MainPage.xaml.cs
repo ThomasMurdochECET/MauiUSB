@@ -1,5 +1,6 @@
 ﻿using FTD2XX_NET;
 using System.Diagnostics;
+using System.Text;
 
 namespace MauiUSB
 
@@ -16,6 +17,7 @@ namespace MauiUSB
         FTDI myFtdiDevice = new FTDI();
         //Variable to store data size
         private uint packetSize = 39;
+        private uint numBytesWritten;
 
         public MainPage()
         {
@@ -33,6 +35,10 @@ namespace MauiUSB
         {
             while (myFtdiDevice.IsOpen)
             {
+                // Check amoun of data available to read
+                //In this case we know how much data we are expecting
+                //so wait until we have all of the bytes we have sent.
+                UInt32 numBytesAvailable = 0;
                 do
                 {
                     ftStatus = myFtdiDevice.GetRxBytesAvailable(ref numBytesAvailable);
@@ -40,7 +46,6 @@ namespace MauiUSB
                     {
                         // Wait for a key press
                         Trace.WriteLine("Failed to get number of bytes available to read (error " + ftStatus.ToString() + ")");
-                        Trace.ReadKey();
                         return;
                     }
                     Thread.Sleep(10);
@@ -56,12 +61,14 @@ namespace MauiUSB
                 {
                     // Wait for a key press
                     Trace.WriteLine("Failed to read data (error " + ftStatus.ToString() + ")");
-                    Trace.ReadKey();
                     return;
                 }
-                Trace.WriteLine(readData);
+                Trace.WriteLine("Read data:" + readData);
+                LabelRXdata.Text = readData;
+                await Task.Delay(90);
 
             }
+        }
 
         private void SetupFTDIdeviceByAutoSerialNumber()
         {
@@ -193,8 +200,27 @@ namespace MauiUSB
 
         private void BtnSend_Clicked(object sender, EventArgs e)
         {
+            try
+            {
+                string messageOut = entrySend.Text;
+                messageOut += "\r\n";
+                byte[] messageBytes = Encoding.ASCII.GetBytes(messageOut);
+                ftStatus = myFtdiDevice.Write(messageBytes, messageBytes.Length, ref numBytesWritten);
+                if (ftStatus != FTDI.FT_STATUS.FT_OK)
+                {
+                    // Wait for a key press
+                    Trace.WriteLine("Failed to write to device (error " + ftStatus.ToString() + ")");
+                    return;
+                }
 
-        }
+            }
+            catch (Exception ex) 
+            {
+                Trace.WriteLine(ex.Message);
+            }
+
+
+        }    
     }
 
 }
