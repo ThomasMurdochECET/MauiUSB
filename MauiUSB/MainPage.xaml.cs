@@ -126,10 +126,10 @@ namespace MauiUSB
                     Trace.WriteLine("Checksum: " + recChkSum);
                     Trace.WriteLine("Data: " + newPacket.Substring(3, 31));
                     string parsedData = $"{newPacket.Length,-14}" +
-                                        $"{newPacket.Substring(0, 3),-14}"+
-                                        $"{newPacket.Substring(6,4),-14}"+
+                                        $"{newPacket.Substring(0,  3),-14}"+
+                                        $"{newPacket.Substring(6,  4),-14}"+
                                         $"{newPacket.Substring(10, 4),-14}"+
-                                        $"{newPacket.Substring(14,4),-14}" +
+                                        $"{newPacket.Substring(14, 4),-14}"+
                                         $"{newPacket.Substring(18, 4),-14}"+
                                         $"{newPacket.Substring(22, 4),-14}"+
                                         $"{newPacket.Substring(26, 4),-14}"+
