@@ -44,10 +44,7 @@
                   Text="Received Packet"
                   HorizontalOptions="Center"/>
 
-            <CheckBox
-                  x:Name="checkBoxHistory"
-                  IsChecked="True"
-                  HorizontalOptions="Center"/>  
+             
             </HorizontalStackLayout>
             <HorizontalStackLayout>
                 <Label
