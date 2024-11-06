@@ -72,7 +72,7 @@ namespace MauiUSB
                         Trace.WriteLine("Failed to get number of bytes available to read (error " + ftStatus.ToString() + ")");
                         return;
                     }
-                    Thread.Sleep(10);
+                   // Thread.Sleep(10);
                 }
                 while (numBytesAvailable < packetSize);
 
@@ -98,11 +98,11 @@ namespace MauiUSB
                 {
                     LabelRXdata.Text = newPacket;
                 }
-                await Task.Delay(90);
-                if(newPacket.Length > packetSize)
+                if(newPacket.Length >= packetSize)
                 {
                     ParseNewPacket();
                 }
+               await Task.Delay(88);
 
             }
         }
@@ -122,11 +122,12 @@ namespace MauiUSB
                 int recChkSum = Convert.ToInt32(newPacket.Substring(34, 3));
                 if(calChkSum == recChkSum)
                 {
-                    Trace.WriteLine("Packet number:"+newPacketNumber);
+                    Trace.WriteLine("Packet number:" + newPacketNumber);
                     Trace.WriteLine("Checksum: " + recChkSum);
                     Trace.WriteLine("Data: " + newPacket.Substring(3, 31));
                     string parsedData = $"{newPacket.Length,-14}" +
-                                        $"{newPacket.Substring(0,  3),-14}"+
+                                        $"{newPacket.Substring(0, 3),-14}" +
+                                        $"{newPacket.Substring(3, 3),-14}" +
                                         $"{newPacket.Substring(6,  4),-14}"+
                                         $"{newPacket.Substring(10, 4),-14}"+
                                         $"{newPacket.Substring(14, 4),-14}"+
@@ -215,7 +216,7 @@ namespace MauiUSB
                      
                     return;
                 }
-               Thread.Sleep(90);
+               //Thread.Sleep(10);
             } while (numBytesAvailable < packetSize);
 
             // Now that we have the amount of data we want available, read it
@@ -283,7 +284,8 @@ namespace MauiUSB
 
         private void BtnClear_Clicked(object sender, EventArgs e)
         {
-
+            LabelParsedData.Text = "";
+            LabelRXdata.Text = "";
         }
 
         private void BtnSend_Clicked(object sender, EventArgs e)

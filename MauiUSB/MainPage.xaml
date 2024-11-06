@@ -64,8 +64,8 @@
                 <Label
                     x:Name="lblConnected"
                     Padding="50,0,0,0"/>
-                <Label
-                    Text="Device Index"/>
+                <!--<Label
+                    Text="Device Index"/>-->
                 <!--<Entry
                     x:Name="DeviceIndex"
                     Text="0"
@@ -88,7 +88,7 @@
             <Label
                 Text="Parsed Packet"/>
             <Label
-                 Text="Length   Header   Number   Analog0     Analog1    Analog2     Analog3    Analog4    Analog5    CkSumRx    CkSumCal lost  "
+                 Text="Length   Header   Number   Analog0     Analog1    Analog2     Analog3    Analog4    Analog5     Binary   CkSumRx   CkSumCal   lost  "
                  x:Name = "parseTitle" />
 
             <ScrollView
