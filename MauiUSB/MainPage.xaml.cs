@@ -26,6 +26,7 @@ namespace MauiUSB
         private string newPacket;
         private int newPacketNumber;
 
+        SolarCalc solarCalc = newSolarCalc;
         //SerialPort serialPort = new SerialPort();
         StringBuilder stringBuilderSend = new StringBuilder("###1111196");
        
@@ -129,6 +130,7 @@ namespace MauiUSB
                 int recChkSum = Convert.ToInt32(newPacket.Substring(34, 3));
                 if(calChkSum == recChkSum)
                 {
+                    DisplaySolarData(newPacket);
                     Trace.WriteLine("Packet number:" + newPacketNumber);
                     Trace.WriteLine("Checksum: " + recChkSum);
                     Trace.WriteLine("Data: " + newPacket.Substring(3, 31));
@@ -164,6 +166,11 @@ namespace MauiUSB
                 }
 
             }
+        }
+
+        private void DisplaySolarData(string Packet)
+        {
+            
         }
 
         private void SetupFTDIdeviceByAutoSerialNumber()
