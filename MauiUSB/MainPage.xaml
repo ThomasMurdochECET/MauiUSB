@@ -8,8 +8,10 @@
         Padding="30,0"
         VerticalOptions="Center">
         <VerticalStackLayout>
-            <HorizontalStackLayout>
-                <Button
+            <HorizontalStackLayout
+                Spacing="10">
+                
+                <Button   
                             x:Name="BtnOpenClose"
                             Text="Open"
                             SemanticProperties.Hint="Open comport"
@@ -19,11 +21,20 @@
                             Text="Clear"
                             SemanticProperties.Hint="Clear serial data"
                             Clicked="BtnClear_Clicked"/>
-                <!--<Picker
+                <Picker
                             x:Name="portPicker"
                             Title="Select Com Port"
-                            HorizontalOptions="Center"/>-->
+                            HorizontalOptions="Center"/>
 
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label
+                    Text="Bits"
+                    FontSize="Medium"/>
+                <Button x:Name="btnBit3" Text="1" FontSize="Medium"/>
+                <Button x:Name="btnBit2" Text="1" FontSize="Medium"/>
+                <Button x:Name="btnBit1" Text="1" FontSize="Medium"/>
+                <Button x:Name="btnBit0" Text="1" FontSize="Medium"/>
             </HorizontalStackLayout>
         </VerticalStackLayout>
         <VerticalStackLayout>
@@ -65,8 +76,8 @@
                     x:Name="lblConnected"
                     Padding="50,0,0,0"/>
                 <!--<Label
-                    Text="Device Index"/>-->
-                <!--<Entry
+                    Text="Device Index"/>
+                <Entry
                     x:Name="DeviceIndex"
                     Text="0"
                     TextChanged="DeviceIndex_TextChanged"/>-->
