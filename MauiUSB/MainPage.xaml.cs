@@ -310,7 +310,32 @@ namespace MauiUSB
             }
 
 
-        }    
+        }
+
+        private void btnBit3_Clicked(object sender, EventArgs e)
+        {
+            ButtonClicked(3);
+        }
+
+        private void btnBit2_Clicked(object sender, EventArgs e)
+        {
+            ButtonClicked(2);
+        }
+
+        private void btnBit1_Clicked(object sender, EventArgs e)
+        {
+            ButtonClicked(1);
+        }
+
+        private void btnBit0_Clicked(object sender, EventArgs e)
+        {
+            ButtonClicked(0);
+        }
+
+        private void ButtonClicked(int i)
+        {
+            
+        }
     }
 
 }
