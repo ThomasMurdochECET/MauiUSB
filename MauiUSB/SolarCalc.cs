@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace MauiUSB
 {
-    internal class SolarCalc
+    public class SolarCalc
     {
+        internal string GetCurrent(object value1, object value2)
+        {
+            
+        }
+
+        internal string GetLEDCurrent(object value1, object value2)
+        {
+            
+        }
+
+        internal string GetVoltage(object value)
+        {
+            
+        }
     }
 }
