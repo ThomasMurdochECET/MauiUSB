@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MauiUSB
 {
@@ -13,22 +14,22 @@ namespace MauiUSB
         string[] analogVoltage = new string [6];
         private double shuntResistorAnalog = 100; // resistor value used in circuit
 
-        internal string GetCurrent(double an1, double shuntResistorAnalog)
+        public string GetCurrent(double an1, double shuntResistorAnalog)
         {
             return analogVoltage[1] = Convert.ToString(an1 * shuntResistorAnalog);
         }
 
-        internal string GetLEDCurrent(object value1, object value2)
+        public string GetLEDCurrent(object value1, object value2)
         {
-            retu
+            
         }
 
-        internal string GetVoltage(object value)
+        public string GetVoltage(double analogValue)
         {
-
+            return analogVoltage[analogValue] = Convert.ToString(analogValue * shuntResistorAnalog);
         }
 
-        internal void ParseSolarData(string ValidPacket)  // takes new valid packet and parses it to double values, to be used for calcs
+        public void ParseSolarData(string ValidPacket)  // takes new valid packet and parses it to double values, to be used for calcs
         {
             
             
