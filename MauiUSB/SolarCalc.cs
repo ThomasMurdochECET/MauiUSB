@@ -22,5 +22,10 @@ namespace MauiUSB
         {
             
         }
+
+        internal void ParseSolarData(string validPacket)
+        {
+            
+        }
     }
 }
