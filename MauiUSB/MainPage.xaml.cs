@@ -168,7 +168,7 @@ namespace MauiUSB
             }
         }
 
-        private void DisplaySolarData(string Packet)
+        private void DisplaySolarData(string validPacket)
         {
             
         }
