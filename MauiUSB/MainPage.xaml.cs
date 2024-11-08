@@ -170,7 +170,12 @@ namespace MauiUSB
 
         private void DisplaySolarData(string validPacket)
         {
-            
+            solarCalc.ParseSolarData(validPacket);
+            labelSolarVolt.Text = solarCalc.GetVoltage(solarCalc.analogVoltage[0]);
+            labelBatteryVolt.Text = solarCalc.GetVoltage(solarCalc.analogVoltage[2]);
+            labelBatteryCurrent.Text = solarCalc.GetCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[2]);
+            labelLED1Current.Text = solarCalc.GetLEDCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[4]);
+            labelLED2Current.Text = solarCalc.GetLEDCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[3]);
         }
 
         private void SetupFTDIdeviceByAutoSerialNumber()
