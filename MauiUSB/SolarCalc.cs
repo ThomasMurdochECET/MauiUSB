@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MauiUSB
 {
@@ -17,19 +17,18 @@ namespace MauiUSB
 
         public string GetCurrent(double analogValue1, double analogValue2)
         {
+            return ((analogValue1 - analogValue2) / 1000).ToString("F3");
 
-            return String.Format("{0:0.00}", Convert.ToString((analogValue1 - analogValue2) / 1000));
-            
         }
 
         public string GetLEDCurrent(double analogValue1, double VoltageToLED)
         {
-            return String.Format("{0:0.00}",Convert.ToString(((analogValue1 - VoltageToLED) / 100) / 1000));
+            return ((analogValue1 - VoltageToLED) / 100 / 1000).ToString("F3");
         }
 
         public string GetVoltage(double analogValue)
         {
-            return String.Format("{0:0.00}", Convert.ToString(analogValue / 1000));
+            return (analogValue / 1000).ToString("F3"); ;
         }
 
         public void ParseSolarData(string ValidPacket)  // takes new valid packet and parses it to double values, to be used for calcs
