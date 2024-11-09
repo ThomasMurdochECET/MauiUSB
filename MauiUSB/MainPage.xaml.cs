@@ -1,35 +1,34 @@
 ﻿using FTD2XX_NET;
-using Microsoft.Maui.Layouts;
 using System.Diagnostics;
-using System.Net.Sockets;
 using System.Text;
-using System.IO.Ports;
 
 namespace MauiUSB
 
 {
     public partial class MainPage : ContentPage
     {
-        UInt32 ftdiDeviceCount = 0;
-        FTDI.FT_STATUS ftStatus = FTDI.FT_STATUS.FT_OK;
+        private UInt32 ftdiDeviceCount = 0;
+        private FTDI.FT_STATUS ftStatus = FTDI.FT_STATUS.FT_OK;
 
         // Allocate storage for device info list
-        FTDI.FT_DEVICE_INFO_NODE[] ftdiDeviceList = new FTDI.FT_DEVICE_INFO_NODE[64];
+        private FTDI.FT_DEVICE_INFO_NODE[] ftdiDeviceList = new FTDI.FT_DEVICE_INFO_NODE[64];
 
         // Create new instance of the FTDI device class
-        FTDI myFtdiDevice = new FTDI();
+        private FTDI myFtdiDevice = new FTDI();
+
         //Variable to store data size
         private uint packetSize = 39;
+
         private uint numBytesWritten;
         private bool sendDataOK;
         private bool bPortOpen;
         private string newPacket;
         private int newPacketNumber;
 
-        SolarCalc solarCalc = new SolarCalc();
-        //SerialPort serialPort = new SerialPort();
-        StringBuilder stringBuilderSend = new StringBuilder("###1111196");
+        private SolarCalc solarCalc = new SolarCalc();
 
+        //SerialPort serialPort = new SerialPort();
+        private StringBuilder stringBuilderSend = new StringBuilder("###1111196");
 
         public MainPage()
         {
@@ -55,7 +54,6 @@ namespace MauiUSB
                 BtnOpenClose.Text = "Open";
                 bPortOpen = false;
             }
-
         }
 
         private void CloseFTDIdevice()
@@ -100,7 +98,6 @@ namespace MauiUSB
                 if (checkBoxHistory.IsChecked == true)
                 {
                     LabelRXdata.Text = newPacket + LabelRXdata.Text;
-
                 }
                 else
                 {
@@ -111,7 +108,6 @@ namespace MauiUSB
                     ParseNewPacket();
                 }
                 await Task.Delay(88);
-
             }
         }
 
@@ -155,27 +151,22 @@ namespace MauiUSB
                     {
                         LabelParsedData.Text = parsedData;
                     }
-
-
-
-
                 }
                 else
                 {
                     Trace.WriteLine("Checksum error");
                 }
-
             }
         }
 
         private void DisplaySolarData(string validPacket)
         {
             solarCalc.ParseSolarData(validPacket);
-            labelSolarVolt.Text =$"{solarCalc.GetVoltage(solarCalc.analogVoltage[0])} V";
-            labelBatteryVolt.Text =$"{solarCalc.GetVoltage(solarCalc.analogVoltage[2])} V";
-            labelBatteryCurrent.Text =$"{solarCalc.GetCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[2])} mA";
-            labelLED1Current.Text =$"{solarCalc.GetLEDCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[4])} mA";
-            labelLED2Current.Text =$"{solarCalc.GetLEDCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[3])} mA";
+            labelSolarVolt.Text = $"{solarCalc.GetVoltage(solarCalc.analogVoltage[0])} V";
+            labelBatteryVolt.Text = $"{solarCalc.GetVoltage(solarCalc.analogVoltage[2])} V";
+            labelBatteryCurrent.Text = $"{solarCalc.GetCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[2])} mA";
+            labelLED1Current.Text = $"{solarCalc.GetLEDCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[4])} mA";
+            labelLED2Current.Text = $"{solarCalc.GetLEDCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[3])} mA";
         }
 
         private void SetupFTDIdeviceByAutoSerialNumber()
@@ -210,7 +201,6 @@ namespace MauiUSB
                 return;
             }
 
-
             // Set read timeout to 5 seconds, write timeout to infinite
             ftStatus = myFtdiDevice.SetTimeouts(5000, 0);
             if (ftStatus != FTDI.FT_STATUS.FT_OK)
@@ -222,7 +212,7 @@ namespace MauiUSB
             }
 
             // Check the amount of data available to read
-            // In this case we know how much data we are expecting, 
+            // In this case we know how much data we are expecting,
             // so wait until we have all of the bytes we have sent.
             uint numBytesAvailable = 0;
             do
@@ -298,7 +288,6 @@ namespace MauiUSB
                     Trace.WriteLine("");
                 }
             }
-
         }
 
         private void BtnClear_Clicked(object sender, EventArgs e)
@@ -309,7 +298,6 @@ namespace MauiUSB
 
         private void BtnSend_Clicked(object sender, EventArgs e)
         {
-
             try
             {
                 string messageOut = entrySend.Text;
@@ -323,14 +311,11 @@ namespace MauiUSB
                     Trace.WriteLine("Failed to write to device (error " + ftStatus.ToString() + ")");
                     return;
                 }
-
             }
             catch (Exception ex)
             {
                 Trace.WriteLine(ex.Message);
             }
-
-
         }
 
         private void btnBit3_Clicked(object sender, EventArgs e)
@@ -367,7 +352,6 @@ namespace MauiUSB
                 stringBuilderSend[i + 3] = '0';
             }
             SendPacket();
-
         }
 
         private void SendPacket()
@@ -393,14 +377,11 @@ namespace MauiUSB
                     Trace.WriteLine("Failed to write to device (error " + ftStatus.ToString() + ")");
                     return;
                 }
-
             }
             catch (Exception ex)
             {
                 Trace.WriteLine(ex.Message);
             }
-
         }
     }
-
 }

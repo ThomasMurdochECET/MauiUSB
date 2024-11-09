@@ -11,101 +11,84 @@
             <HorizontalStackLayout
                 Spacing="10">
 
-                <Button   
+                <Button
                             x:Name="BtnOpenClose"
                             Text="Open"
                             SemanticProperties.Hint="Open comport"
-                            Clicked="BtnOpenClose_Clicked"/>
+                            Clicked="BtnOpenClose_Clicked" />
                 <Button
                             x:Name="BtnClear"
                             Text="Clear"
                             SemanticProperties.Hint="Clear serial data"
-                            Clicked="BtnClear_Clicked"/>
+                            Clicked="BtnClear_Clicked" />
                 <Picker
                             x:Name="portPicker"
                             Title="Select Com Port"
-                            HorizontalOptions="Center"/>
-
+                            HorizontalOptions="Center" />
             </HorizontalStackLayout>
             <HorizontalStackLayout
-                Spacing="5"
-                >
+                Spacing="5">
                 <Label
                     Text="Bits"
                     FontSize="Medium"
-                    VerticalOptions="Center"/>
+                    VerticalOptions="Center" />
 
-                <Button x:Name="btnBit0" Text="1" FontSize="Medium" Clicked="btnBit0_Clicked"/>
-                <Button x:Name="btnBit1" Text="1" FontSize="Medium" Clicked="btnBit1_Clicked"/>
-                <Button x:Name="btnBit2" Text="1" FontSize="Medium" Clicked="btnBit2_Clicked"/>
-                <Button x:Name="btnBit3" Text="1" FontSize="Medium" Clicked="btnBit3_Clicked"/>
+                <Button x:Name="btnBit0" Text="1" FontSize="Medium" Clicked="btnBit0_Clicked" />
+                <Button x:Name="btnBit1" Text="1" FontSize="Medium" Clicked="btnBit1_Clicked" />
+                <Button x:Name="btnBit2" Text="1" FontSize="Medium" Clicked="btnBit2_Clicked" />
+                <Button x:Name="btnBit3" Text="1" FontSize="Medium" Clicked="btnBit3_Clicked" />
             </HorizontalStackLayout>
-
-
-
+            <HorizontalStackLayout
         </VerticalStackLayout>
         <VerticalStackLayout>
             <HorizontalStackLayout>
                 <Label
-                    Text = "Solar Voltage"/>
-
+                    Text = "Solar Voltage" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout>
                 <Label
-                    Text = "Battery Voltage"/>
-
+                    Text = "Battery Voltage" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout>
                 <Label
-                    Text = "Battery Current"/>
-
+                    Text = "Battery Current" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout>
                 <Label
-                    Text = "LED 1 Current"/>
-
+                    Text = "LED 1 Current" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout>
                 <Label
-                    Text = "LED 2 Current"/>
-
+                    Text = "LED 2 Current" />
             </HorizontalStackLayout>
-
         </VerticalStackLayout>
-
-
-
 
         <VerticalStackLayout>
 
-
             <Label
-            x:Name="labelSolarVolt"
- MinimumWidthRequest="50"
- HorizontalOptions="Center"/>
-            <Label    
-x:Name="labelBatteryVolt"
-MinimumWidthRequest="50"
-                HorizontalOptions="Center"/>
+                    x:Name="labelSolarVolt"
+                    MinimumWidthRequest="50"
+                    HorizontalOptions="Center" />
             <Label
-    x:Name="labelBatteryCurrent"
-    MinimumWidthRequest="50"
-                HorizontalOptions="Center"/>
+                    x:Name="labelBatteryVolt"
+                    MinimumWidthRequest="50"
+                    HorizontalOptions="Center" />
             <Label
-      x:Name="labelLED1Current"
-      MinimumWidthRequest="50"
-                HorizontalOptions="Center"/>
+                    x:Name="labelBatteryCurrent"
+                    MinimumWidthRequest="50"
+                    HorizontalOptions="Center" />
             <Label
-    x:Name="labelLED2Current"
-    MinimumWidthRequest="50"
-                HorizontalOptions="Center"/>
-
-
-
+                    x:Name="labelLED1Current"
+                    MinimumWidthRequest="50"
+                    HorizontalOptions="Center" />
+            <Label
+                    x:Name="labelLED2Current"
+                    MinimumWidthRequest="50"
+                    HorizontalOptions="Center" />
         </VerticalStackLayout>
         <VerticalStackLayout>
             <HorizontalStackLayout>
@@ -113,81 +96,67 @@ MinimumWidthRequest="50"
                      x:Name="btnSend"
                      Text="Send"
                      Clicked="BtnSend_Clicked"
-                     HorizontalOptions="Center"/>
+                     HorizontalOptions="Center" />
                 <Entry
                     x:Name="entrySend"
                     Text="###1111196"
-                    HorizontalOptions="Center"/>
-
+                    HorizontalOptions="Center" />
             </HorizontalStackLayout>
             <HorizontalStackLayout>
                 <Label
                   Text="Received Packet"
-                  HorizontalOptions="Center"/>
-
-
+                  HorizontalOptions="Center" />
             </HorizontalStackLayout>
             <HorizontalStackLayout>
                 <Label
                     Text="Received Packet History"
-                    HorizontalOptions="Center"/>
+                    HorizontalOptions="Center" />
                 <CheckBox
                     x:Name="checkBoxHistory"
                     IsChecked ="False"
-                    HorizontalOptions="Center"/>
-                <Label 
+                    HorizontalOptions="Center" />
+                <Label
                     Padding="50,0,0,0"
-                    Text="Parsed Packet History"/>
+                    Text="Parsed Packet History" />
                 <CheckBox
                     x:Name="checkBoxParsedHistory"
                     IsChecked="False"
-                    HorizontalOptions="Center"/>
+                    HorizontalOptions="Center" />
                 <Label
                     x:Name="lblConnected"
-                    Padding="50,0,0,0"/>
+                    Padding="50,0,0,0" />
                 <!--<Label
-                    Text="Device Index"/>
+                    Text="Device Index" />
                 <Entry
                     x:Name="DeviceIndex"
                     Text="0"
-                    TextChanged="DeviceIndex_TextChanged"/>-->
+                    TextChanged="DeviceIndex_TextChanged" />-->
             </HorizontalStackLayout>
-
-
 
             <ScrollView
                 x:Name="ScrollViewRecData"
                 MaximumHeightRequest="500"
-                VerticalOptions="StartAndExpand"/>
+                VerticalOptions="StartAndExpand" />
             <Label
-          
+
                     x:Name="LabelRXdata"
                     Text="Received Packet"
-                    MinimumWidthRequest="310"/>
+                    MinimumWidthRequest="310" />
             <Label
-                x:Name="lblMessage"/>
+                x:Name="lblMessage" />
             <Label
-                Text="Parsed Packet"/>
+                Text="Parsed Packet" />
             <Label
                  Text="Length   Header   Number   Analog0     Analog1    Analog2     Analog3    Analog4    Analog5     Binary   CkSumRx   CkSumCal   lost  "
                  x:Name = "parseTitle" />
 
             <ScrollView
                 x:Name="scrollViewParsedData"
-                MaximumHeightRequest="500"/>
+                MaximumHeightRequest="500" />
             <Label
                 x:Name="LabelParsedData"
                 Text="Parsed Packet"
-                MinimumWidthRequest="310"/>
-
-
-
+                MinimumWidthRequest="310" />
         </VerticalStackLayout>
     </HorizontalStackLayout>
-
-
-
-
-
-
 </ContentPage>
