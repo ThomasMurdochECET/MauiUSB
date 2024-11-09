@@ -26,7 +26,7 @@ namespace MauiUSB
         private string newPacket;
         private int newPacketNumber;
 
-        SolarCalc solarCalc = new SolarCalc;
+        SolarCalc solarCalc = new SolarCalc();
         //SerialPort serialPort = new SerialPort();
         StringBuilder stringBuilderSend = new StringBuilder("###1111196");
        
@@ -136,13 +136,13 @@ namespace MauiUSB
                     Trace.WriteLine("Data: " + newPacket.Substring(3, 31));
                     string parsedData = $"{newPacket.Length,-14}" +
                                         $"{newPacket.Substring(0, 3),-14}" + // Header
-                                        $"{newPacket.Substring(3, 3),-14}" + //Number
+                                        $"{newPacket.Substring(3, 3),-14}" + // Number
                                         $"{newPacket.Substring(6,  4),-14}"+ // Analog 0
                                         $"{newPacket.Substring(10, 4),-14}"+ // Analog 1
                                         $"{newPacket.Substring(14, 4),-14}"+ // Analog 2
                                         $"{newPacket.Substring(18, 4),-14}"+ // Analog 3
                                         $"{newPacket.Substring(22, 4),-14}"+ // Analog 4
-                                        $"{newPacket.Substring(26, 4),-14}"+ // Analog 5
+                                        $"{newPacket.Substring(26, 4),-14}"+ 
                                         $"{newPacket.Substring(30, 4),-14}"+
                                         $"{newPacket.Substring(34, 3),-14}"+
                                         $"{calChkSum,-14}" + "\r\n";

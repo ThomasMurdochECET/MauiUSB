@@ -1,44 +1,48 @@
-﻿using NetworkExtension;
+﻿//using NetworkExtension;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MauiUSB
 {
     
     public class SolarCalc
     {
-        string[] analogVoltage = new string [6];
-        private double shuntResistorAnalog = 100; // resistor value used in circuit
+       public double[] analogVoltage = new double [5];
+        
 
-        public string GetCurrent(double an1, double shuntResistorAnalog)
+        public string GetCurrent(double analogValue1, double analogValue2)
         {
-            return analogVoltage[1] = Convert.ToString(an1 * shuntResistorAnalog);
+
+            return String.Format("{0:0.00}", Convert.ToString((analogValue1 - analogValue2) / 1000));
+            
         }
 
-        public string GetLEDCurrent(object value1, object value2)
+        public string GetLEDCurrent(double analogValue1, double VoltageToLED)
         {
-            
+            return String.Format("{0:0.00}",Convert.ToString(((analogValue1 - VoltageToLED) / 100) / 1000));
         }
 
         public string GetVoltage(double analogValue)
         {
-            return analogVoltage[analogValue] = Convert.ToString(analogValue * shuntResistorAnalog);
+            return String.Format("{0:0.00}", Convert.ToString(analogValue / 1000));
         }
 
         public void ParseSolarData(string ValidPacket)  // takes new valid packet and parses it to double values, to be used for calcs
         {
             
             
-            double an0 = Convert.ToDouble (ValidPacket.Substring(6, 4));  // Analog 0
-            double an1 = Convert.ToDouble (ValidPacket.Substring(10, 4)); // Analog 1
-            double an2 = Convert.ToDouble (ValidPacket.Substring(14, 4)); // Analog 2
-            double an3 = Convert.ToDouble (ValidPacket.Substring(18, 4)); // Analog 3
-            double an4 = Convert.ToDouble (ValidPacket.Substring(22, 4)); // Analog 4
-            double an5 = Convert.ToDouble (ValidPacket.Substring(26, 4)); // Analog 5
+            analogVoltage[0] = Convert.ToDouble (ValidPacket.Substring(6, 4));  // Analog 0
+            analogVoltage[1] = Convert.ToDouble (ValidPacket.Substring(10, 4)); // Analog 1
+            analogVoltage[2] = Convert.ToDouble (ValidPacket.Substring(14, 4)); // Analog 2
+            analogVoltage[3] = Convert.ToDouble (ValidPacket.Substring(18, 4)); // Analog 3
+            analogVoltage[4] = Convert.ToDouble (ValidPacket.Substring(22, 4)); // Analog 4
+
+           
         }
 
        
@@ -59,4 +63,4 @@ namespace MauiUSB
               
         
     
-}
+
