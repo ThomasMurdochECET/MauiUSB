@@ -26,7 +26,7 @@ namespace MauiUSB
         private string newPacket;
         private int newPacketNumber;
 
-        SolarCalc solarCalc = newSolarCalc;
+        SolarCalc solarCalc = new SolarCalc;
         //SerialPort serialPort = new SerialPort();
         StringBuilder stringBuilderSend = new StringBuilder("###1111196");
        
