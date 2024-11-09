@@ -10,7 +10,7 @@
         <VerticalStackLayout>
             <HorizontalStackLayout
                 Spacing="10">
-                
+
                 <Button   
                             x:Name="BtnOpenClose"
                             Text="Open"
@@ -34,56 +34,77 @@
                     Text="Bits"
                     FontSize="Medium"
                     VerticalOptions="Center"/>
-                
+
                 <Button x:Name="btnBit0" Text="1" FontSize="Medium" Clicked="btnBit0_Clicked"/>
                 <Button x:Name="btnBit1" Text="1" FontSize="Medium" Clicked="btnBit1_Clicked"/>
                 <Button x:Name="btnBit2" Text="1" FontSize="Medium" Clicked="btnBit2_Clicked"/>
                 <Button x:Name="btnBit3" Text="1" FontSize="Medium" Clicked="btnBit3_Clicked"/>
             </HorizontalStackLayout>
-            
-            
-            
+
+
+
         </VerticalStackLayout>
         <VerticalStackLayout>
             <HorizontalStackLayout>
                 <Label
                     Text = "Solar Voltage"/>
-                <Label
-                    x:Name="labelSolarVolt"
-                    MinimumWidthRequest="100"/>
+
             </HorizontalStackLayout>
-           
+
             <HorizontalStackLayout>
                 <Label
                     Text = "Battery Voltage"/>
-                <Label
-                    x:Name="labelBatteryVolt"
-                    MinimumWidthRequest="100"/>
+
             </HorizontalStackLayout>
 
             <HorizontalStackLayout>
                 <Label
                     Text = "Battery Current"/>
-                <Label
-                    x:Name="labelBatteryCurrent"
-                    MinimumWidthRequest="100"/>
+
             </HorizontalStackLayout>
 
             <HorizontalStackLayout>
                 <Label
                     Text = "LED 1 Current"/>
-                <Label
-                    x:Name="labelLED1Current"
-                    MinimumWidthRequest="100"/>
+
             </HorizontalStackLayout>
 
             <HorizontalStackLayout>
                 <Label
                     Text = "LED 2 Current"/>
-                <Label
-                    x:Name="labelLED2Current"
-                    MinimumWidthRequest="100"/>
+
             </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+
+
+
+
+        <VerticalStackLayout>
+
+
+            <Label
+            x:Name="labelSolarVolt"
+ MinimumWidthRequest="50"
+ HorizontalOptions="Center"/>
+            <Label    
+x:Name="labelBatteryVolt"
+MinimumWidthRequest="50"
+                HorizontalOptions="Center"/>
+            <Label
+    x:Name="labelBatteryCurrent"
+    MinimumWidthRequest="50"
+                HorizontalOptions="Center"/>
+            <Label
+      x:Name="labelLED1Current"
+      MinimumWidthRequest="50"
+                HorizontalOptions="Center"/>
+            <Label
+    x:Name="labelLED2Current"
+    MinimumWidthRequest="50"
+                HorizontalOptions="Center"/>
+
+
 
         </VerticalStackLayout>
         <VerticalStackLayout>
@@ -104,7 +125,7 @@
                   Text="Received Packet"
                   HorizontalOptions="Center"/>
 
-             
+
             </HorizontalStackLayout>
             <HorizontalStackLayout>
                 <Label
@@ -133,7 +154,7 @@
             </HorizontalStackLayout>
 
 
-    
+
             <ScrollView
                 x:Name="ScrollViewRecData"
                 MaximumHeightRequest="500"
@@ -163,7 +184,7 @@
 
         </VerticalStackLayout>
     </HorizontalStackLayout>
-  
+
 
 
 
