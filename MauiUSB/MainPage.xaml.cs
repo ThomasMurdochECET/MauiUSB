@@ -347,10 +347,10 @@ namespace MauiUSB
                 stringBuilderSend[i + 3] = '1';
                 switch (i)
                 {
-                    case 0:
-                        imgLED1.Source = "ledon.png";
+                    case 2:
+                        imgLED1.Source = "ledoff.png";
                         break;
-                    case 1:
+                    case 3:
                         imgLED2.Source = "ledoff.png";
                         break;
                 }
@@ -359,6 +359,15 @@ namespace MauiUSB
             {
                 btnBit[i].Text = "0";
                 stringBuilderSend[i + 3] = '0';
+                switch (i)
+                {
+                    case 2:
+                        imgLED1.Source = "ledon.png";
+                        break;
+                    case 3:
+                        imgLED2.Source = "ledon.png";
+                        break;
+                }
             }
             SendPacket();
         }
@@ -393,12 +402,9 @@ namespace MauiUSB
             }
         }
 
+     
+
         private void imgLED1_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void imgLED1_Clicked_1(object sender, EventArgs e)
         {
             ButtonClicked(2);
         }
