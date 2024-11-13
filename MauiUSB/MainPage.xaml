@@ -9,7 +9,8 @@
         VerticalOptions="Center">
         <VerticalStackLayout>
             <HorizontalStackLayout
-                Spacing="10">
+                Padding="5"                
+                Spacing="5">
 
                 <Button
                             x:Name="BtnOpenClose"
@@ -21,25 +22,44 @@
                             Text="Clear"
                             SemanticProperties.Hint="Clear serial data"
                             Clicked="BtnClear_Clicked" />
-                <Picker
+                <!--<Picker
                             x:Name="portPicker"
                             Title="Select Com Port"
-                            HorizontalOptions="Center" />
+                            HorizontalOptions="Center" />-->
             </HorizontalStackLayout>
             <HorizontalStackLayout
-                Spacing="5">
-                <Label
+                Spacing="5"
+                Padding="5">
+                <!--<Label
                     Text="Bits"
                     FontSize="Medium"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center" />-->
 
                 <Button x:Name="btnBit0" Text="1" FontSize="Medium" Clicked="btnBit0_Clicked" />
                 <Button x:Name="btnBit1" Text="1" FontSize="Medium" Clicked="btnBit1_Clicked" />
                 <Button x:Name="btnBit2" Text="1" FontSize="Medium" Clicked="btnBit2_Clicked" />
                 <Button x:Name="btnBit3" Text="1" FontSize="Medium" Clicked="btnBit3_Clicked" />
             </HorizontalStackLayout>
-            <HorizontalStackLayout
+           
+            <HorizontalStackLayout 
+               HorizontalOptions="Center"
+                Spacing="35">
+                <ImageButton
+                    x:Name="imgLED1"
+                    Source="ledoff.png"
+                    WidthRequest="75"
+                    Clicked="imgLED1_Clicked"
+                    />
+                <ImageButton
+                    x:Name="imgLED2"
+                    Source="ledoff.png"
+                    WidthRequest="75"
+                    Clicked="imgLED2_Clicked"/>
+
+            </HorizontalStackLayout>
+
         </VerticalStackLayout>
+        
         <VerticalStackLayout>
             <HorizontalStackLayout>
                 <Label
