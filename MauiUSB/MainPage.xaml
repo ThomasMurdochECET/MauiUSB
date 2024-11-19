@@ -5,8 +5,8 @@
 
     <HorizontalStackLayout
         Spacing="25"
-        Padding="30,0"
-        VerticalOptions="Center">
+        Padding="50"
+        VerticalOptions="StartAndExpand">
         <VerticalStackLayout>
             <HorizontalStackLayout
                 Padding="5"                

@@ -1,23 +1,33 @@
 ﻿//using NetworkExtension;
 namespace MauiUSB
 {
+    //for the following class we calculate the voltages and currents using an analog input and shunt resistors, we then use 
     public class SolarCalc
     {
         public double[] analogVoltage = new double[5];
 
         public string GetCurrent(double analogValue1, double analogValue2)
         {
-            return ((analogValue1 - analogValue2) / 100).ToString("F3");
+            return ((analogValue2 - analogValue1) / 100).ToString("  0.000 mA; -0.000 mA;  0.000 mA");
         }
 
         public string GetLEDCurrent(double analogValue1, double VoltageToLED)
         {
-            return ((analogValue1 - VoltageToLED) / 100).ToString("F3");
+            if ((analogValue1 - VoltageToLED) >= 0)
+            {
+                return (((analogValue1 - VoltageToLED) / 100)).ToString("  0.000 mA; -0.000 mA;  0.000 mA");
+            }
+
+            else
+            {
+                return ("  0.000 mA"); //ensures we dont see a negative value at the LEDs
+            }
+
         }
 
         public string GetVoltage(double analogValue)
         {
-            return (analogValue / 1000).ToString("F3"); ;
+            return (analogValue / 1000).ToString("  0.000 V; -0.000 V;  0.000 V"); 
         }
 
         public void ParseSolarData(string ValidPacket)  // takes new valid packet and parses it to double values, to be used for calcs

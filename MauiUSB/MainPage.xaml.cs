@@ -159,14 +159,15 @@ namespace MauiUSB
             }
         }
 
+        //this function writes the values calculated in solar calc class to the xaml textboxes.
         private void DisplaySolarData(string validPacket)
         {
             solarCalc.ParseSolarData(validPacket);
-            labelSolarVolt.Text = $"{solarCalc.GetVoltage(solarCalc.analogVoltage[0])} V";
-            labelBatteryVolt.Text = $"{solarCalc.GetVoltage(solarCalc.analogVoltage[2])} V";
-            labelBatteryCurrent.Text = $"{solarCalc.GetCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[2])} mA";
-            labelLED1Current.Text = $"{solarCalc.GetLEDCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[4])} mA";
-            labelLED2Current.Text = $"{solarCalc.GetLEDCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[3])} mA";
+            labelSolarVolt.Text = $"{solarCalc.GetVoltage(solarCalc.analogVoltage[0])}";
+            labelBatteryVolt.Text = $"{solarCalc.GetVoltage(solarCalc.analogVoltage[2])}";
+            labelBatteryCurrent.Text = $"{solarCalc.GetCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[2])}";
+            labelLED1Current.Text = $"{solarCalc.GetLEDCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[4])}";
+            labelLED2Current.Text = $"{solarCalc.GetLEDCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[3])}";
         }
 
         private void SetupFTDIdeviceByAutoSerialNumber()
