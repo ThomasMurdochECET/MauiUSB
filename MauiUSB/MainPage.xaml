@@ -47,12 +47,14 @@
                 <ImageButton
                     x:Name="imgLED1"
                     Source="ledoff.png"
+                    HeightRequest="100"
                     WidthRequest="75"
                     Clicked="imgLED1_Clicked"
                     />
                 <ImageButton
                     x:Name="imgLED2"
                     Source="ledoff.png"
+                    HeightRequest="100"
                     WidthRequest="75"
                     Clicked="imgLED2_Clicked"/>
 
